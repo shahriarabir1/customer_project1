@@ -15,7 +15,7 @@ const Temperature: React.FC<{ city: string }> = ({ city }) => {
   const fetchTemperature = async () => {
     try {
       const response = await axios.get<WeatherData>(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=f1b1deb02078091be15a42fdab5a6ee8&units=metric`
       );
       setTemperature(response.data.main.temp);
     } catch (error) {
@@ -27,15 +27,7 @@ const Temperature: React.FC<{ city: string }> = ({ city }) => {
     fetchTemperature();
   }, []);
 
-  return (
-    <div>
-      {temperature !== null && (
-        <p>
-          The current temperature in {city} is: {temperature.toFixed(2)}°C
-        </p>
-      )}
-    </div>
-  );
+  return <div>{temperature !== null && <p>{temperature.toFixed(2)}°C</p>}</div>;
 };
 
 export default Temperature;
