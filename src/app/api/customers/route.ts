@@ -19,3 +19,12 @@ export async function POST(request: NextRequest) {
   });
   return NextResponse.json(newUser, { status: 201 });
 }
+
+export async function GET(request: NextRequest) {
+  const users = await prisma.user.findMany();
+  if (users) {
+    return NextResponse.json(users, { status: 200 });
+  } else {
+    return NextResponse.json(users, { status: 404 });
+  }
+}
