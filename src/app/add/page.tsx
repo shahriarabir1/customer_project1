@@ -1,5 +1,7 @@
 "use client";
 import axios from "axios";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 interface FormData {
   name: string;
@@ -8,6 +10,7 @@ interface FormData {
 }
 
 const page = () => {
+  const router = useRouter();
   const [data, setData] = useState<FormData>({
     name: "",
     phone: "",
@@ -23,7 +26,8 @@ const page = () => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/customers", data);
-      console.log("Submitted Successfully", response.data);
+      alert("Submitted successfully");
+      router.push("/");
     } catch (error) {
       console.error("Something went wrong", error);
     }
@@ -40,6 +44,7 @@ const page = () => {
             value={data.name}
             name="name"
             onChange={handleChange}
+            className="text-black"
           />
         </div>
         <div className="flex gap-x-3">
@@ -49,6 +54,7 @@ const page = () => {
             value={data.phone}
             name="phone"
             onChange={handleChange}
+            className="text-black"
           />
         </div>
         <div className="flex gap-x-7">
@@ -58,6 +64,7 @@ const page = () => {
             value={data.city}
             name="city"
             onChange={handleChange}
+            className="text-black"
           />
         </div>
 
